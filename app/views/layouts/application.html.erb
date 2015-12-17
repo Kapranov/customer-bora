@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
+<head>
+  <title>Karibu Customer Bora</title>
+  <!-- Meta -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <%= stylesheet_link_tag    "application", media: "all" %>
+  <%= stylesheet_link_tag    "http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic",
+                             "http://fonts.googleapis.com/css?family=Covered+By+Your+Grace" %>
+  <%= csrf_meta_tags %>
+
+  <%= render 'layouts/shim' %>
+</head>
+
+<body data-spy="scroll">
+
+<%= render 'layouts/header' %>
+
+
+<%= yield %>
+
+
+<%= render 'layouts/footer' %>
+
+<!-- Javascript -->
+<%= javascript_include_tag "application" %>
+<% if admin_signed_in? %>
+  <%= javascript_include_tag "/autocomplete-data/customers" %>
+<% end %>
+<%= gflash %>
+</body>
+</html>
+
+
+
+
+

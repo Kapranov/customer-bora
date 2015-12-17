@@ -1,0 +1,179 @@
+<section id="promo" class="section offset-header has-pattern top-30">
+  <div class="container">
+    <div class="row">
+
+    <%= render 'sections' %>
+
+
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <%= render 'shared/alert' %>
+      </div>
+    </div>
+
+    <div class="row">
+
+
+      <div class="col-md-6">
+        <!-- recent users -->
+        <div class="panel panel-default">
+          <!-- Default panel contents -->
+          <div class="panel-heading">Recent Users</div>
+          <div class="panel-body">
+            <p>Below is a list recently registered users.</p>
+          </div>
+
+          <!-- Table -->
+          <table class="table">
+            <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Location</th>
+              <th>Join Date</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% @users.each_with_index do |user, index| %>
+            <tr>
+              <td><%= index += 1 %></td>
+              <td><%= user.name %></td>
+              <td><%= user.location ? user.location : "-" %></td>
+              <td><%= user.created_at.strftime("%d %B %Y") %></td>
+            </tr>
+
+            <% end %>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="panel panel-default">
+          <div class="panel-heading">Compose Message <span class="pull-right badge" id="counter"></span> </div>
+          <div class="panel-body">
+
+            <%= form_tag(sms_path, { class: ""}) do %>
+                <div class="form-group">
+                    <%= text_area_tag :message, nil , class: "form-control", rows: 4 %>
+                </div>
+                <div class="form-group">
+                  <%= label_tag :phone_numbers %>
+                  <%= text_field_tag :phone_numbers, nil, class: "form-control" %>
+                </div>
+                <hr>
+                <div class="row" id="advanced">
+                  <div class="col-sm-3">
+                    <div class="checkbox">
+                      <label>
+                        <%= radio_button_tag :users ,:all_users %> Send to all
+                      </label>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-4">
+                    <div class="checkbox">
+                      <label>
+                        <%= radio_button_tag :users, :only_location %> Only with location
+                      </label>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-5">
+                    <div class="checkbox">
+                      <label>
+                        <%= radio_button_tag :users, :only_submission %> Only with submissions
+                      </label>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-5">
+                    <div class="checkbox">
+                      <label>
+                        <%= radio_button_tag :users, :past_week_submission %> Submitted last 7 days
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
+
+
+                <div class="form-group">
+                 <%= submit_tag "Send Message", class: "btn btn-primary" %>
+                </div>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="panel panel-default">
+              <div class="panel-heading">Non-CustomerBora Messages</div>
+              <div class="panel-body">
+                <%= form_tag(custom_sms_path, { class: ""}) do %>
+                    <div class="form-group">
+
+                        <%= label_tag :phone_numbers %>
+                        <%= text_field_tag :custom_numbers, nil, class: "form-control", placeholder: "+254728658741,+254726354156" %>
+                    </div>
+                    <div class="form-group">
+                      <%= label_tag :message %>
+                      <%= text_area_tag :custom_message, nil , class: "form-control", rows: 4 %>
+                    </div>
+                    <%= submit_tag "Send Message", class: "btn btn-primary" %>
+
+                <% end %>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <!-- recent submissions -->
+        <div class="panel panel-default">
+          <!-- Default panel contents -->
+          <div class="panel-heading">Recent Submissions</div>
+          <div class="panel-body">
+            <p>Below is a list recently submitted products.</p>
+          </div>
+
+          <!-- Table -->
+          <table class="table">
+            <thead>
+            <tr>
+              <th>#</th>
+              <th>Product</th>
+              <th>Serial No</th>
+              <th>Submitted By</th>
+              <th>Date</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% @submissions.each_with_index do |submission, index| %>
+                <tr>
+                  <td><%= index += 1 %></td>
+                  <td><%= submission.name %></td>
+                  <td><%= submission.serial_no %></td>
+                  <td><%= submission.user.name %></td>
+                  <td><%= submission.created_at.strftime("%d %B %Y") %></td>
+                </tr>
+
+            <% end %>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+    </div>
+  </div>
+</section>

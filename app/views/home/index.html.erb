@@ -1,0 +1,150 @@
+<%= render 'home/promo' %>
+
+<!-- ******FEATURES****** -->
+<section id="features" class="features section">
+  <div class="container">
+    <div class="row">
+      <h2 class="title text-center sr-only">Features</h2>
+      <div class="item col-md-4 col-sm-6 col-xs-12 text-center">
+        <%= image_tag "how-it-works/sms.png" %>
+        <div class="content">
+          <h3 class="title">Register for an account</h3>
+          <p>SMS Register#Your Names to <%= ENV["SHORT_CODE"] %> </p>
+        </div><!--//content-->
+      </div><!--//item-->
+      <div class="item col-md-4 col-sm-6 col-xs-12 text-center">
+        <%= image_tag "how-it-works/verify.png" %>
+        <div class="content">
+          <h3 class="title">Verify your account</h3>
+          <p>Receive a Verification SMS. Use the credentials to verify your account </p>
+        </div><!--//content-->
+      </div><!--//item-->
+      <div class="item col-md-4 col-sm-6 col-xs-12 text-center">
+        <%= image_tag "how-it-works/submit.png" %>
+        <div class="content">
+          <h3 class="title">Submit Product Serial</h3>
+          <p>SMS the products serial number each time you buy a product
+          </p>
+        </div><!--//content-->
+      </div><!--//item-->
+      <div class="item col-md-6 col-sm-6 col-xs-12 text-center">
+        <%= image_tag "how-it-works/keep.png" %>
+        <div class="content">
+          <h3 class="title">Keep Packaging</h3>
+          <p>After using the product,don't dispose of the packaging. Ensure you keep the packaging safe for
+            collection. </p>
+        </div><!--//content-->
+      </div><!--//item-->
+      <div class="item col-md-6 col-sm-6 col-xs-12 text-center">
+        <%= image_tag "how-it-works/collect.png" %>
+        <div class="content">
+          <h3 class="title">Collection Point</h3>
+          <p>Customer bora will collect the trash then transform into art piece through a partnership with Kuona Trust.
+          </p>
+        </div><!--//content-->
+      </div><!--//item-->
+    </div><!--//row-->
+
+  </div><!--//container-->
+</section><!--//features-->
+
+
+
+<!-- ******WHY****** -->
+<section id="why" class="features section has-pattern">
+  <div class="container">
+
+    <div class="row">
+      <h2 class="title text-center why">Why are we doing this?</h2>
+      <div class="item col-md-4 col-sm-6 col-xs-12 text-center">
+        <div class="icon">
+          <i class="fa fa-globe"></i>
+        </div><!--//icon-->
+        <div class="content">
+          <h3 class="title">Environment</h3>
+          <p>At Customer Bora we want to see our environment clean. We reduce littering of undegradable trash,
+            through our responsible consumers. </p>
+        </div><!--//content-->
+      </div><!--//item-->
+      <div class="item col-md-4 col-sm-6 col-xs-12 text-center">
+        <div class="icon">
+          <i class="fa fa-users"></i>
+        </div><!--//icon-->
+        <div class="content">
+          <h3 class="title">Customer Loyalty</h3>
+          <p>The consumer can know how much they spend on a product, the company can know who, from where and how often
+            do they use their product, reward system          </p>
+        </div><!--//content-->
+      </div><!--//item-->
+      <div class="item col-md-4 col-sm-6 col-xs-12 text-center">
+        <div class="icon">
+          <i class="fa fa-thumbs-up"></i>
+        </div><!--//icon-->
+        <div class="content">
+          <h3 class="title">Philanthropy</h3>
+          <p>The trash will be recycled put into good use transformed into art pieces that can be later sold and
+            proceeds go to charitable community projects.
+          </p>
+        </div><!--//content-->
+      </div><!--//item-->
+    </div><!--//row-->
+  </div><!--//container-->
+</section><!--//features-->
+
+
+<!-- ******FAQ****** -->
+<section id="faq" class="faq section">
+  <div class="container">
+    <div class="row">
+      <h2 class="title text-center">Frequently Asked Questions</h2>
+      <% if @faqs.any? %>
+          <div class="faq-col col-md-6 col-sm-6 col-xs-12">
+            <% @faqs.first(@faqs.count/2).each do |faq| %>
+                <div class="item">
+                  <h3 class="question"><i class="fa fa-question-circle"></i><%= faq.question %></h3>
+                  <p class="answer"> <%= faq.answer %></p>
+                </div><!--//item-->
+            <% end %>
+          </div><!--//faq-col-->
+
+
+          <div class="faq-col col-md-6 col-sm-6 col-xs-12">
+            <% @faqs.last(@faqs.count - (@faqs.count/2)).each do |faq| %>
+                <div class="item">
+                  <h3 class="question"><i class="fa fa-question-circle"></i><%= faq.question %></h3>
+                  <p class="answer"> <%= faq.answer %></p>
+                </div><!--//item-->
+            <% end %>
+          </div><!--//faq-col-->
+      <% else %>
+          <div class="alert alert-success alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            This will be CustomerBora's FAQ section. We are gathering the most frequently asked questions at the moment.
+            Please check back soon!
+
+          </div>
+      <% end %>
+    </div><!--//row-->
+    <div class="more text-center">
+      <h4 class="title">More questions?</h4>
+      <a class="btn btn-lg btn-theme scrollto" href="index.html#contact">Get in touch<i class="fa fa-arrow-circle-o-down"></i></a>
+    </div>
+  </div><!--//container-->
+</section><!--//faq-->
+
+
+
+<!-- ******Tweets****** -->
+<section id="testimonials" class="testimonials section">
+  <div class="container">
+    <div class="row">
+      <h2 class="title text-center"> <i class="fa fa-twitter"></i> CustomerBora on Twitter!</h2>
+      <% @tweets.each do |mention| %>
+        <%= render partial: 'tweets', locals: { mention: mention} %>
+      <% end %>
+    </div><!--//row-->
+  </div><!--//container-->
+</section><!--//Testimonials-->
+
+<!-- ******CONTACT****** -->
+<%= render 'contact' %>
